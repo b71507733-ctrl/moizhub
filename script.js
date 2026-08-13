@@ -918,7 +918,7 @@
                                 <div class="project__actions">
 
     <a
-        href="https://wa.me/92301250824"
+        href="https://wa.me/923301250824"
         target="_blank"
         rel="noopener noreferrer"
         data-cursor="open"
