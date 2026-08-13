@@ -14,6 +14,8 @@
         email: "abdulmoizmeer2@gmail.com",
         whatsapp: "03301250824",
 
+        workerUrl: "https://moizhub-contact.b71507733.workers.dev/",
+
         socialLinks: {
             github: "https://github.com/b71507733-ctrl",
             tiktok: "https://www.tiktok.com/search?q=m26_offical&t=1786555371231",
@@ -1367,6 +1369,126 @@
                     "Sending your message…";
             }
         );
+    }/* =====================================================
+   16. CONTACT FORM
+   ===================================================== */
+
+    function initContactForm() {
+
+        const form = $("#contactForm");
+        const status = $("#contactStatus");
+
+        if (!form) return;
+
+        form.addEventListener("submit", async event => {
+
+            // IMPORTANT:
+            // Static website hai, isliye normal form submit nahi hoga.
+            event.preventDefault();
+
+            const name =
+                $("#cfName")?.value.trim();
+
+            const email =
+                $("#cfEmail")?.value.trim();
+
+            const message =
+                $("#cfMessage")?.value.trim();
+
+
+            // -----------------------------------------
+            // VALIDATION
+            // -----------------------------------------
+
+            if (!name || !email || !message) {
+
+                status.textContent =
+                    "Please complete all fields.";
+
+                return;
+            }
+
+
+            const emailValid =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+
+            if (!emailValid) {
+
+                status.textContent =
+                    "Please enter a valid email address.";
+
+                return;
+            }
+
+
+            // -----------------------------------------
+            // SENDING
+            // -----------------------------------------
+
+            status.textContent =
+                "Sending your message…";
+
+
+            try {
+
+                const response = await fetch(
+                    CONFIG.workerUrl,
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+
+                        body: JSON.stringify({
+                            name: name,
+                            email: email,
+                            message: message
+                        })
+                    }
+                );
+
+
+                const result =
+                    await response.json();
+
+
+                // -----------------------------------------
+                // ERROR FROM CLOUDFLARE
+                // -----------------------------------------
+
+                if (!response.ok || !result.ok) {
+
+                    throw new Error(
+                        result.reason ||
+                        "Message could not be sent."
+                    );
+                }
+
+
+                // -----------------------------------------
+                // SUCCESS
+                // -----------------------------------------
+
+                status.textContent =
+                    "Message sent successfully!";
+
+                form.reset();
+
+
+            } catch (error) {
+
+                console.error(
+                    "Contact form error:",
+                    error
+                );
+
+                status.textContent =
+                    "Something went wrong. Please try again.";
+            }
+
+        });
     }
 
 
