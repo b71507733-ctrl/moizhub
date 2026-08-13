@@ -22,56 +22,56 @@
         },
 
         projects: [
-          {
-    number: "01",
-    title: "Portfolio Website",
-    description: "A carefully crafted personal portfolio designed to showcase my development work, technical skills, and creative approach to building modern digital experiences. Built with a strong focus on responsive design, smooth interactions, clean structure, and a distinctive visual identity.",
-    image: "project-1.jpg",
-    stack: ["HTML", "CSS", "JavaScript", "Bootstrap"],
-    features: [
-        "Fully responsive across devices",
-        "Smooth interactive animations",
-        "Custom visual design system",
-        "SEO-friendly structure",
-        "Interactive navigation and components",
-        "Performance-focused frontend"
-    ],
-    contact: "#connect"
-},
+            {
+                number: "01",
+                title: "Portfolio Website",
+                description: "A carefully crafted personal portfolio designed to showcase my development work, technical skills, and creative approach to building modern digital experiences. Built with a strong focus on responsive design, smooth interactions, clean structure, and a distinctive visual identity.",
+                image: "project-1.jpg",
+                stack: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+                features: [
+                    "Fully responsive across devices",
+                    "Smooth interactive animations",
+                    "Custom visual design system",
+                    "SEO-friendly structure",
+                    "Interactive navigation and components",
+                    "Performance-focused frontend"
+                ],
+                contact: "#connect"
+            },
 
-         {
-    number: "02",
-    title: "E-Commerce Website",
-    description: "A modern e-commerce experience focused on presenting products clearly, keeping navigation effortless, and creating a smooth shopping journey across every screen. Built with a responsive interface, custom components, and dynamic functionality that brings the storefront to life.",
-    image: "project-4.jpg",
-    stack: ["Bootstrap", "JavaScript", "PHP"],
-    features: [
-        "Fully responsive storefront",
-        "Custom product components",
-        "Dynamic product interactions",
-        "Clean and intuitive navigation",
-        "Mobile-first user experience",
-        "Structured frontend architecture"
-    ],
-    contact: "#connect"
-},
+            {
+                number: "02",
+                title: "E-Commerce Website",
+                description: "A modern e-commerce experience focused on presenting products clearly, keeping navigation effortless, and creating a smooth shopping journey across every screen. Built with a responsive interface, custom components, and dynamic functionality that brings the storefront to life.",
+                image: "project-4.jpg",
+                stack: ["Bootstrap", "JavaScript", "PHP"],
+                features: [
+                    "Fully responsive storefront",
+                    "Custom product components",
+                    "Dynamic product interactions",
+                    "Clean and intuitive navigation",
+                    "Mobile-first user experience",
+                    "Structured frontend architecture"
+                ],
+                contact: "#connect"
+            },
 
-          {
-    number: "03",
-    title: "Laravel Management System",
-    description: "A database-driven web application built around a structured Laravel backend, with a clean foundation for managing data, users, and application workflows. The project combines reliable server-side logic with MySQL and a responsive interface to create a practical full stack system.",
-    image: "project-3.jpg",
-    stack: ["Laravel", "PHP", "MySQL"],
-    features: [
-        "Structured Laravel backend",
-        "MySQL database integration",
-        "Complete CRUD functionality",
-        "Organized application architecture",
-        "Dynamic data management",
-        "Responsive administration interface"
-    ],
-    contact: "#connect"
-}
+            {
+                number: "03",
+                title: "Laravel Management System",
+                description: "A database-driven web application built around a structured Laravel backend, with a clean foundation for managing data, users, and application workflows. The project combines reliable server-side logic with MySQL and a responsive interface to create a practical full stack system.",
+                image: "project-3.jpg",
+                stack: ["Laravel", "PHP", "MySQL"],
+                features: [
+                    "Structured Laravel backend",
+                    "MySQL database integration",
+                    "Complete CRUD functionality",
+                    "Organized application architecture",
+                    "Dynamic data management",
+                    "Responsive administration interface"
+                ],
+                contact: "#connect"
+            }
         ]
     };
 
@@ -892,12 +892,12 @@
                                 <div class="project__stack">
 
                                     ${project.stack.map(
-                                        tech => `
+                    tech => `
                                             <span>
                                                 ${escapeHTML(tech)}
                                             </span>
                                         `
-                                    ).join("")}
+                ).join("")}
 
                                 </div>
 
@@ -905,12 +905,12 @@
                                 <ul class="project__features">
 
                                     ${project.features.map(
-                                        feature => `
+                    feature => `
                                             <li>
                                                 ${escapeHTML(feature)}
                                             </li>
                                         `
-                                    ).join("")}
+                ).join("")}
 
                                 </ul>
 
@@ -1311,12 +1311,16 @@
         if (!form) return;
 
 
+        // Show any status message the server (send.php) sent back
+        // via ?sent=1 / ?sent=0&reason=... after a redirect.
+        if (status && status.textContent.trim()) {
+            status.dataset.serverType =
+                status.dataset.serverType || "";
+        }
+
         form.addEventListener(
             "submit",
             event => {
-
-                event.preventDefault();
-
 
                 const name =
                     $("#cfName")?.value.trim();
@@ -1329,6 +1333,8 @@
 
 
                 if (!name || !email || !message) {
+
+                    event.preventDefault();
 
                     status.textContent =
                         "Please complete all fields.";
@@ -1344,48 +1350,20 @@
 
                 if (!emailValid) {
 
+                    event.preventDefault();
+
                     status.textContent =
                         "Please enter a valid email address.";
 
                     return;
                 }
 
-
-                if (
-                    !CONFIG.email ||
-                    CONFIG.email.includes("YOUR_")
-                ) {
-
-                    status.textContent =
-                        "Add your real email in script.js first.";
-
-                    return;
-                }
-
-
-                const subject =
-                    encodeURIComponent(
-                        `MoizHub project enquiry from ${name}`
-                    );
-
-
-                const body =
-                    encodeURIComponent(
-                        `Name: ${name}
-
-Email: ${email}
-
-Message:
-${message}`
-                    );
-
-
-                window.location.href =
-                    `mailto:${CONFIG.email}?subject=${subject}&body=${body}`;
-
-
+                // Validation passed — let the form submit normally
+                // to send.php (core PHP), which validates again on
+                // the server and redirects straight to WhatsApp with
+                // the message pre-filled.
                 status.textContent =
-                    "Opening your email client…";
+                    "Sending… opening WhatsApp";
             }
         );
     }
@@ -1602,8 +1580,8 @@ ${message}`
                     return `
                         <li
                             class="${index === selected
-                                ? "is-selected"
-                                : ""}"
+                        ? "is-selected"
+                        : ""}"
                             data-index="${index}"
                             role="option"
                             aria-selected="${index === selected}"

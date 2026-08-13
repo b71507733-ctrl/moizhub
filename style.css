@@ -120,8 +120,8 @@ p{margin:0;}
 .bg-system__grid{
   position:absolute;inset:-2px;
   background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
   background-size:64px 64px;
   mask-image:radial-gradient(ellipse 70% 55% at 50% 0%, black 40%, transparent 85%);
   opacity:.55;
