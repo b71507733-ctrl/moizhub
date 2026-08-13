@@ -1,26 +1,3 @@
-<?php
-/* =========================================================
-   MOIZHUB — CORE PHP ENTRY POINT
-   Converted from static index.html to index.php
-   ========================================================= */
-declare(strict_types=1);
-
-// Pick up a status message passed back from send.php after redirect
-$formStatus = null;
-if (isset($_GET['sent'])) {
-    if ($_GET['sent'] === '1') {
-        $formStatus = ['type' => 'success', 'text' => 'Message ready — redirecting you to WhatsApp…'];
-    } elseif ($_GET['sent'] === '0') {
-        $errorMap = [
-            'fields'  => 'Please complete all fields.',
-            'email'   => 'Please enter a valid email address.',
-            'method'  => 'Invalid request method.',
-        ];
-        $reason = $_GET['reason'] ?? '';
-        $formStatus = ['type' => 'error', 'text' => $errorMap[$reason] ?? 'Something went wrong. Please try again.'];
-    }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -811,8 +788,6 @@ if (isset($_GET['sent'])) {
                     <form
                             class="contact-form"
                             id="contactForm"
-                            action="send.php"
-                            method="POST"
                             novalidate>
 
                         <p class="contact-form__hint">
@@ -879,9 +854,8 @@ if (isset($_GET['sent'])) {
                                 class="contact-form__status"
                                 id="contactStatus"
                                 role="status"
-                                aria-live="polite"
-                                data-server-type="<?= $formStatus['type'] ?? '' ?>"
-                        ><?= $formStatus['text'] ?? '' ?></p>
+                                aria-live="polite">
+                        </p>
 
                     </form>
 
