@@ -646,3 +646,181 @@ html.no-custom-cursor, html.no-custom-cursor body{cursor:auto;}
 
 /* Utility: prevent horizontal overflow everywhere */
 html, body{max-width:100%;overflow-x:hidden;}
+
+/* =========================================================
+   NEW ADDITIONS — Extra Animations & Micro-interactions
+   ========================================================= */
+
+/* ---------- 1. Text Scramble/Glitch reveal (hero titles ke liye) ---------- */
+@keyframes text-flicker{
+  0%,100%{opacity:1;}
+  8%{opacity:.4;}
+  10%{opacity:1;}
+  20%{opacity:.6;}
+  22%{opacity:1;}
+}
+.text-glitch{
+  position:relative;
+  display:inline-block;
+}
+.text-glitch::before, .text-glitch::after{
+  content:attr(data-text);
+  position:absolute;left:0;top:0;width:100%;height:100%;
+  opacity:0;
+}
+.text-glitch:hover::before{
+  color:var(--accent);
+  animation:glitch-shift .28s var(--ease) 1;
+  opacity:.7;clip-path:inset(0 0 55% 0);
+}
+.text-glitch:hover::after{
+  color:var(--signal);
+  animation:glitch-shift-rev .28s var(--ease) 1;
+  opacity:.7;clip-path:inset(55% 0 0 0);
+}
+@keyframes glitch-shift{0%{transform:translate(0,0);}20%{transform:translate(-3px,1px);}40%{transform:translate(3px,-1px);}100%{transform:translate(0,0);}}
+@keyframes glitch-shift-rev{0%{transform:translate(0,0);}20%{transform:translate(3px,-1px);}40%{transform:translate(-3px,1px);}100%{transform:translate(0,0);}}
+
+/* ---------- 2. Magnetic button pull (btn-signal / btn-ghost pe add hoga via JS, CSS base) ---------- */
+.btn-magnetic{
+  transition:transform .3s var(--ease);
+  will-change:transform;
+}
+
+/* ---------- 3. Infinite marquee — tech-stack ticker ---------- */
+.marquee{
+  overflow:hidden;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+  padding-block:1rem;
+  white-space:nowrap;
+  mask-image:linear-gradient(90deg, transparent, black 8%, black 92%, transparent);
+}
+.marquee__track{
+  display:inline-flex;
+  gap:3rem;
+  animation:marquee-scroll 28s linear infinite;
+}
+.marquee:hover .marquee__track{animation-play-state:paused;}
+.marquee__track span{
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  letter-spacing:.1em;
+  color:var(--ink-faint);
+  display:flex;align-items:center;gap:.6rem;
+}
+.marquee__track span::after{content:'/';color:var(--accent);}
+@keyframes marquee-scroll{
+  from{transform:translateX(0);}
+  to{transform:translateX(-50%);}
+}
+
+/* ---------- 4. Animated gradient border glow (project cards / panels) ---------- */
+.glow-border{
+  position:relative;
+  border-radius:6px;
+  isolation:isolate;
+}
+.glow-border::before{
+  content:'';
+  position:absolute;inset:-1px;
+  border-radius:inherit;
+  padding:1px;
+  background:conic-gradient(from var(--angle,0deg), var(--accent), transparent 30%, var(--signal), transparent 70%, var(--accent));
+  -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  opacity:0;
+  transition:opacity .4s var(--ease);
+  animation:rotate-border 4s linear infinite;
+  z-index:-1;
+}
+.glow-border:hover::before{opacity:1;}
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false;}
+@keyframes rotate-border{to{--angle:360deg;}}
+
+/* ---------- 5. Typing cursor blink (role rotator ke sath use ho sakta hai) ---------- */
+.typing-cursor{
+  display:inline-block;
+  width:2px;height:1em;
+  background:var(--accent);
+  margin-left:.15em;
+  vertical-align:middle;
+  animation:cursor-blink 1s step-end infinite;
+}
+@keyframes cursor-blink{0%,49%{opacity:1;}50%,100%{opacity:0;}}
+
+/* ---------- 6. Stat counter pulse-in (numbers ke liye e.g. "3+ years", "20+ projects") ---------- */
+.stat-num{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,5vw,3.4rem);
+  font-weight:700;
+  color:var(--ink);
+  display:inline-block;
+}
+.stat-num[data-reveal].is-visible{
+  animation:stat-pop .6s var(--ease) forwards;
+}
+@keyframes stat-pop{
+  0%{transform:scale(.85);opacity:0;}
+  60%{transform:scale(1.04);opacity:1;}
+  100%{transform:scale(1);}
+}
+
+/* ---------- 7. Card 3D tilt (project__media ya skill-map__node pe use karo) ---------- */
+.tilt-card{
+  transform-style:preserve-3d;
+  transition:transform .35s var(--ease);
+  will-change:transform;
+}
+/* rotateX/rotateY JS se set hongi mousemove pe via --rx/--ry custom props */
+.tilt-card[style]{
+  transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));
+}
+
+/* ---------- 8. Shimmer / skeleton loading (agar images lazy-load karni hain) ---------- */
+.shimmer{
+  position:relative;
+  overflow:hidden;
+  background:var(--bg-elevated);
+}
+.shimmer::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(90deg, transparent, rgba(236,234,229,.06), transparent);
+  transform:translateX(-100%);
+  animation:shimmer-sweep 1.6s ease-in-out infinite;
+}
+@keyframes shimmer-sweep{to{transform:translateX(100%);}}
+
+/* ---------- 9. Link underline draw (btn-ghost jaisa but generic reusable) ---------- */
+.link-draw{
+  position:relative;
+  display:inline-block;
+}
+.link-draw::after{
+  content:'';
+  position:absolute;left:0;bottom:-2px;height:1px;width:0;
+  background:var(--accent);
+  transition:width .35s var(--ease);
+}
+.link-draw:hover::after, .link-draw:focus-visible::after{width:100%;}
+
+/* ---------- 10. Noise-grain flicker on hero glow (subtle life to bg-system__glow) ---------- */
+@keyframes glow-breathe{
+  0%,100%{opacity:.85;transform:translate(-50%,-50%) scale(1);}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.06);}
+}
+.bg-system__glow{
+  animation:glow-breathe 6s ease-in-out infinite;
+}
+
+/* Respect existing reduced-motion block — inherits automatically since selectors match [data-reveal] etc,
+   but adding new ones explicitly for safety */
+@media (prefers-reduced-motion: reduce){
+  .text-glitch::before, .text-glitch::after,
+  .marquee__track, .glow-border::before,
+  .typing-cursor, .shimmer::after, .bg-system__glow{
+    animation:none !important;
+  }
+}
