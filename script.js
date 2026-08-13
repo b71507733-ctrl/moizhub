@@ -1311,12 +1311,16 @@
         if (!form) return;
 
 
+        // Show any status message the server (send.php) sent back
+        // via ?sent=1 / ?sent=0&reason=... after a redirect.
+        if (status && status.textContent.trim()) {
+            status.dataset.serverType =
+                status.dataset.serverType || "";
+        }
+
         form.addEventListener(
             "submit",
             event => {
-
-                event.preventDefault();
-
 
                 const name =
                     $("#cfName")?.value.trim();
@@ -1329,6 +1333,8 @@
 
 
                 if (!name || !email || !message) {
+
+                    event.preventDefault();
 
                     status.textContent =
                         "Please complete all fields.";
@@ -1344,39 +1350,21 @@
 
                 if (!emailValid) {
 
+                    event.preventDefault();
+
                     status.textContent =
                         "Please enter a valid email address.";
 
                     return;
                 }
 
-
-                // Build the WhatsApp message and redirect —
-                // no backend needed, works on Netlify / GitHub Pages
-                // or any static host.
-                const waNumber =
-                    CONFIG.whatsapp.replace(/\D/g, "");
-
-                const waNumberIntl =
-                    waNumber.startsWith("92")
-                        ? waNumber
-                        : "92" + waNumber.replace(/^0/, "");
-
-                const waText =
-                    encodeURIComponent(
-                        `New enquiry from MoizHub\n\nName: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-                    );
-
-                const waUrl =
-                    `https://wa.me/${waNumberIntl}?text=${waText}`;
-
-
+                // Validation passed — let the form submit normally
+                // to send.php (core PHP), which validates again on
+                // the server and sends the message straight to
+                // WhatsApp via the CallMeBot API — the visitor
+                // doesn't need to do anything else.
                 status.textContent =
-                    "Opening WhatsApp…";
-
-                window.open(waUrl, "_blank", "noopener");
-
-                form.reset();
+                    "Sending your message…";
             }
         );
     }
