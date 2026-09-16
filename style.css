@@ -715,140 +715,225 @@ html, body{max-width:100%;overflow-x:hidden;}
   to{transform:translateX(-50%);}
 }
 
-/* ===================== MOIZHUB ADVANCED SYSTEM PRICING CARDS ===================== */
-.pricing-card {
-  background: rgba(10, 14, 20, 0.75);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  border-radius: 6px;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  z-index: 1;
+:root {
+  --bg: #0A0B0D;
+  --surface: #121418;
+  --surface-2: #16181D;
+  --line: #262A31;
+  --line-strong: #3A3F49;
+  --text: #E9E7E2;
+  --muted: #868C97;
+  --muted-2: #5B606B;
+  --accent: #FFB020;
+  --accent-dim: #8A5F1C;
+  --mono: 'JetBrains Mono', 'SFMono-Regular', monospace;
+  --sans: 'Inter', -apple-system, sans-serif;
 }
 
-/* Subtle background grid pattern inside card */
-.pricing-card::before {
-  content: '';
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  margin: 0;
+}
+
+.section.services {
+  padding: 6rem 0 7rem;
+  background-image:
+          linear-gradient(var(--line) 1px, transparent 1px),
+          linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+  position: relative;
+}
+
+.section.services::before {
+  content: "";
   position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 20px 20px;
-  opacity: 0.4;
-  z-index: -1;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(10,11,13,0) 0%, var(--bg) 75%);
   pointer-events: none;
 }
 
-/* Terminal Corner Brackets */
-.pricing-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 12px; height: 12px;
-  border-top: 2px solid rgba(255, 255, 255, 0.2);
-  border-right: 2px solid rgba(255, 255, 255, 0.2);
-  transition: all 0.3s ease;
+.container-fluid { max-width: 1180px; padding: 0 2rem; position: relative; z-index: 1; }
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px;
+  height: 1px;
+  background: var(--accent);
+  display: inline-block;
 }
 
-/* Hover State Glow & Lift */
-.pricing-card:hover {
-  border-color: rgba(0, 229, 255, 0.5);
-  transform: translateY(-6px);
-  box-shadow: 0 12px 35px -10px rgba(0, 229, 255, 0.15),
-  0 0 15px rgba(0, 229, 255, 0.1);
-  background: rgba(14, 20, 28, 0.9);
+.section-title {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.15;
+  color: var(--text);
+  max-width: 640px;
+  margin-bottom: 1.1rem;
+  letter-spacing: -0.01em;
 }
 
-.pricing-card:hover::after {
-  border-color: #00e5ff;
-  width: 18px;
-  height: 18px;
+.lede--muted {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 520px;
+  line-height: 1.6;
 }
 
-/* Header Tag Styling */
-.badge-tag {
-  font-size: 0.68rem;
-  font-family: monospace;
-  letter-spacing: 1.5px;
-  padding: 4px 10px;
+/* ---------- CARD ---------- */
+.pricing-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  position: relative;
+  padding: 2.1rem 2rem !important;
+  transition: border-color 0.25s ease, transform 0.25s ease;
   border-radius: 2px;
-  background: rgba(0, 229, 255, 0.05);
-  border: 1px solid rgba(0, 229, 255, 0.2);
-  color: #00e5ff;
-  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
 }
 
-/* Price Box Accent */
+/* crop-mark corners — schematic reference marks */
+.pricing-card::before,
+.pricing-card::after,
+.pricing-card .corner-tl,
+.pricing-card .corner-br {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.pricing-card::before {
+  top: -1px; left: -1px;
+  border-top: 2px solid var(--muted-2);
+  border-left: 2px solid var(--muted-2);
+}
+.pricing-card::after {
+  bottom: -1px; right: -1px;
+  border-bottom: 2px solid var(--muted-2);
+  border-right: 2px solid var(--muted-2);
+}
+
+.pricing-card:hover {
+  border-color: var(--line-strong);
+}
+.pricing-card:hover::before,
+.pricing-card:hover::after {
+  border-color: var(--accent);
+}
+
+.badge-tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  border: 1px solid var(--line-strong);
+  padding: 0.28rem 0.6rem;
+  border-radius: 2px;
+}
+
+.tier-num {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--muted-2);
+}
+
+.pricing-card h3 {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 1.28rem;
+  color: var(--text);
+  margin: 0.9rem 0 0.6rem;
+  letter-spacing: -0.005em;
+}
+
+.pricing-card p.text-secondary {
+  color: var(--muted) !important;
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin-bottom: 0;
+}
+
+/* ---------- PRICE BLOCK ---------- */
 .price-box {
-  background: rgba(0, 0, 0, 0.5);
-  border-left: 3px solid rgba(0, 229, 255, 0.6);
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
-  border-right: 1px solid rgba(255, 255, 255, 0.05);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.3s ease;
-}
-
-.pricing-card:hover .price-box {
-  border-left-color: #00e5ff;
-  box-shadow: inset 0 0 15px rgba(0, 229, 255, 0.05);
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  border-left: 2px solid var(--accent);
+  padding: 1.1rem 1.2rem !important;
+  margin: 1.5rem 0 1.4rem !important;
 }
 
 .price-amount {
-  font-size: 1.7rem;
-  letter-spacing: -0.5px;
+  font-family: var(--mono);
+  font-size: 1.5rem;
+  letter-spacing: -0.01em;
+  color: var(--text) !important;
 }
 
-/* List Items with Micro-Glow */
+.price-box .fs-7 { color: var(--muted-2); font-size: 0.78rem; }
+
+.price-box .fs-8 {
+  display: block;
+  margin-top: 0.45rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
+
+/* ---------- FEATURE LIST ---------- */
 .feature-list li {
-  padding: 8px 0;
-  color: rgba(255, 255, 255, 0.75);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
-  font-size: 0.88rem;
-  transition: color 0.2s ease;
-}
-
-.pricing-card:hover .feature-list li {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.feature-list li i {
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.pricing-card:hover .feature-list li i {
-  color: #00e5ff !important;
-  transform: translateX(3px);
-}
-
-/* Interactive Futuristic Button */
-.btn-pricing {
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.03);
-  color: #ffffff;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 3px;
-  font-size: 0.82rem;
-  letter-spacing: 1.5px;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.87rem;
+  color: #C7C9CE;
+  line-height: 1.4;
+}
+.feature-list li:last-child { border-bottom: none; }
+.feature-list li i {
+  color: var(--accent) !important;
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
+}
+
+/* ---------- CTA ---------- */
+.btn-pricing {
+  background: transparent;
+  border: 1px solid var(--line-strong);
+  color: var(--text) !important;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  border-radius: 2px;
+  transition: all 0.22s ease;
+  position: relative;
   overflow: hidden;
-  transition: all 0.3s ease;
 }
-
+.btn-pricing span { position: relative; z-index: 1; }
 .btn-pricing:hover {
-  background: #00e5ff;
-  color: #05080c;
-  border-color: #00e5ff;
-  font-weight: 700;
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+  border-color: var(--accent);
+  color: #14161A !important;
+  background: var(--accent);
 }
+.btn-pricing:hover i { color: #14161A !important; }
 
-.btn-pricing i {
-  transition: transform 0.25s ease;
-}
-
-.btn-pricing:hover i {
-  transform: translateX(5px);
-}
+.fs-6 { font-size: 0.92rem !important; }
+.fs-7 { font-size: 0.8rem !important; }
+.fs-8 { font-size: 0.72rem !important; }
