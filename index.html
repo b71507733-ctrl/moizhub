@@ -414,86 +414,46 @@
                 distinctive user experience.
             </p>
 
-            <!-- Bento Grid Layout -->
-            <div class="bento-grid" id="projectList">
-
-                <!-- Bento Card 1 (Large Featured - 2x2 or 2 Columns) -->
-                <a class="bento-card bento-card--featured" href="#" data-hue="32">
-                    <div class="bento-card__header">
-                        <span class="bento-card__index">01</span>
-                        <span class="bento-card__arrow">↗</span>
-                    </div>
-                    <div class="bento-card__body">
-                        <h3 class="bento-card__title">Commerce Admin Suite</h3>
-                        <p class="bento-card__desc">Complete inventory management system with dynamic analytics and role-based access control.</p>
-                    </div>
-                    <div class="bento-card__footer">
-                        <span class="bento-card__tags">LARAVEL · MYSQL · ADMIN PANEL</span>
-                    </div>
+            <!-- Projects injected dynamically by JavaScript -->
+            <div class="project-list" id="projectList">
+                <a class="project-row" href="#" data-tags="LARAVEL · MYSQL · ADMIN PANEL" data-hue="32">
+                    <span class="project-row__index">01</span>
+                    <span class="project-row__title">Commerce Admin Suite</span>
+                    <span class="project-row__tags">LARAVEL · MYSQL · ADMIN PANEL</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <!-- Bento Card 2 (Medium - 1x1 or Tall) -->
-                <a class="bento-card" href="#" data-hue="180">
-                    <div class="bento-card__header">
-                        <span class="bento-card__index">02</span>
-                        <span class="bento-card__arrow">↗</span>
-                    </div>
-                    <div class="bento-card__body">
-                        <h3 class="bento-card__title">Kiosk Lockdown System</h3>
-                        <p class="bento-card__desc">Low-level Windows process monitor and custom shell lock system.</p>
-                    </div>
-                    <div class="bento-card__footer">
-                        <span class="bento-card__tags">C# .NET · KIOSK · WATCHDOG</span>
-                    </div>
+                <a class="project-row" href="#" data-tags="C# .NET · KIOSK · WATCHDOG" data-hue="180">
+                    <span class="project-row__index">02</span>
+                    <span class="project-row__title">Kiosk Lockdown System</span>
+                    <span class="project-row__tags">C# .NET · KIOSK · WATCHDOG</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <!-- Bento Card 3 (Medium - 1x1) -->
-                <a class="bento-card" href="#" data-hue="260">
-                    <div class="bento-card__header">
-                        <span class="bento-card__index">03</span>
-                        <span class="bento-card__arrow">↗</span>
-                    </div>
-                    <div class="bento-card__body">
-                        <h3 class="bento-card__title">Realtime Session Dashboard</h3>
-                        <p class="bento-card__desc">Live device tracking interface via REST APIs and WebSockets.</p>
-                    </div>
-                    <div class="bento-card__footer">
-                        <span class="bento-card__tags">JAVASCRIPT · REST API · UI</span>
-                    </div>
+                <a class="project-row" href="#" data-tags="JAVASCRIPT · REST API · UI" data-hue="260">
+                    <span class="project-row__index">03</span>
+                    <span class="project-row__title">Realtime Session Dashboard</span>
+                    <span class="project-row__tags">JAVASCRIPT · REST API · UI</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <!-- Bento Card 4 (Wide - 2x1) -->
-                <a class="bento-card bento-card--wide" href="#" data-hue="10">
-                    <div class="bento-card__header">
-                        <span class="bento-card__index">04</span>
-                        <span class="bento-card__arrow">↗</span>
-                    </div>
-                    <div class="bento-card__body">
-                        <h3 class="bento-card__title">Multi-Role Booking Platform</h3>
-                        <p class="bento-card__desc">Automated reservation workflow engine with email notifications and role permissions.</p>
-                    </div>
-                    <div class="bento-card__footer">
-                        <span class="bento-card__tags">PHP · LARAVEL · AUTH</span>
-                    </div>
+                <a class="project-row" href="#" data-tags="PHP · LARAVEL · AUTH" data-hue="10">
+                    <span class="project-row__index">04</span>
+                    <span class="project-row__title">Multi-Role Booking Platform</span>
+                    <span class="project-row__tags">PHP · LARAVEL · AUTH</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <!-- Bento Card 5 (Medium - 1x1) -->
-                <a class="bento-card" href="#" data-hue="140">
-                    <div class="bento-card__header">
-                        <span class="bento-card__index">05</span>
-                        <span class="bento-card__arrow">↗</span>
-                    </div>
-                    <div class="bento-card__body">
-                        <h3 class="bento-card__title">Portfolio Interface System</h3>
-                        <p class="bento-card__desc">High-performance responsive UI components engineered with modern CSS standards.</p>
-                    </div>
-                    <div class="bento-card__footer">
-                        <span class="bento-card__tags">BOOTSTRAP · HTML · CSS</span>
-                    </div>
+                <a class="project-row" href="#" data-tags="BOOTSTRAP · HTML · CSS" data-hue="140">
+                    <span class="project-row__index">05</span>
+                    <span class="project-row__title">Portfolio Interface System</span>
+                    <span class="project-row__tags">BOOTSTRAP · HTML · CSS</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
             </div>
 
+        </div>
+
+        <div class="project-preview" id="projectPreview">
+            <div class="project-preview__inner" id="projectPreviewInner">
+                <span class="project-preview__label" id="projectPreviewLabel"></span>
+            </div>
         </div>
     </section>
 
