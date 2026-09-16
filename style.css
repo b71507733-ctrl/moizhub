@@ -824,3 +824,117 @@ html, body{max-width:100%;overflow-x:hidden;}
     animation:none !important;
   }
 }
+
+/* ===================== UPGRADED PRICING CARDS ===================== */
+.pricing-card {
+  background: rgba(18, 22, 28, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+}
+
+.pricing-card:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.pricing-card--featured {
+  background: rgba(24, 30, 42, 0.85);
+  border: 1px solid rgba(0, 180, 216, 0.4);
+  box-shadow: 0 0 20px rgba(0, 180, 216, 0.1);
+}
+
+.pricing-card--featured:hover {
+  border-color: rgba(0, 180, 216, 0.8);
+  box-shadow: 0 15px 35px rgba(0, 180, 216, 0.2);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: #00b4d8;
+  color: #0d1117;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 4px;
+  letter-spacing: 1px;
+}
+
+.badge-tag {
+  font-size: 0.7rem;
+  font-family: monospace;
+  letter-spacing: 1px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.badge-tag--featured {
+  background: rgba(0, 180, 216, 0.1);
+  border-color: rgba(0, 180, 216, 0.3);
+  color: #00b4d8;
+}
+
+.price-box {
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.price-box--featured {
+  border-color: rgba(0, 180, 216, 0.15);
+}
+
+.price-amount {
+  font-size: 1.65rem;
+}
+
+.feature-list li {
+  padding: 6px 0;
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+  font-size: 0.9rem;
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.btn-pricing {
+  display: inline-block;
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  transition: all 0.25s ease;
+}
+
+.btn-pricing:hover {
+  background: #ffffff;
+  color: #0d1117;
+  border-color: #ffffff;
+}
+
+.btn-pricing--featured {
+  background: #00b4d8;
+  color: #0d1117;
+  border-color: #00b4d8;
+  font-weight: 600;
+}
+
+.btn-pricing--featured:hover {
+  background: #0096c7;
+  border-color: #0096c7;
+  color: #ffffff;
+}
+
+.fs-8 {
+  font-size: 0.75rem;
+}
