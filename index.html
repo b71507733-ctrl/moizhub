@@ -397,12 +397,7 @@
     </section>
 
 
-
     <section id="work" class="section work" data-label="03 / WORK">
-        <div class="work__orb work__orb--1" aria-hidden="true"></div>
-        <div class="work__orb work__orb--2" aria-hidden="true"></div>
-        <div class="work__orb work__orb--3" aria-hidden="true"></div>
-
         <div class="container-fluid">
 
             <p class="eyebrow" data-reveal>SELECTED WORK</p>
@@ -412,71 +407,53 @@
                 Designed to stand out.
             </h2>
 
-            <p class="lede--muted" data-reveal>
+            <p class="lede lede--muted" data-reveal>
                 A selection of digital products and experiments built across frontend
-                interfaces, backend systems, and full stack applications.
+                interfaces, backend systems, and full stack applications — with every
+                project focused on useful functionality, clean engineering, and a
+                distinctive user experience.
             </p>
 
             <!-- Projects injected dynamically by JavaScript -->
-            <div class="project-grid" id="projectList">
-
-                <a class="project-card" href="#" data-category="backend">
-                    <div class="project-card__top">
-                        <span class="project-card__status">LIVE</span>
-                        <span class="project-card__arrow">↗</span>
-                    </div>
-                    <div class="project-card__bottom">
-                        <h3 class="project-card__title">Commerce Admin Suite</h3>
-                        <div class="project-card__tags"><span>LARAVEL</span><span>MYSQL</span><span>ADMIN</span></div>
-                    </div>
+            <div class="project-list" id="projectList">
+                <a class="project-row" href="#" data-tags="LARAVEL · MYSQL · ADMIN PANEL" data-hue="32">
+                    <span class="project-row__index">01</span>
+                    <span class="project-row__title">Commerce Admin Suite</span>
+                    <span class="project-row__tags">LARAVEL · MYSQL · ADMIN PANEL</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <a class="project-card" href="#" data-category="desktop">
-                    <div class="project-card__top">
-                        <span class="project-card__status">DESKTOP</span>
-                        <span class="project-card__arrow">↗</span>
-                    </div>
-                    <div class="project-card__bottom">
-                        <h3 class="project-card__title">Kiosk Lockdown</h3>
-                        <div class="project-card__tags"><span>C# .NET</span><span>WATCHDOG</span></div>
-                    </div>
+                <a class="project-row" href="#" data-tags="C# .NET · KIOSK · WATCHDOG" data-hue="180">
+                    <span class="project-row__index">02</span>
+                    <span class="project-row__title">Kiosk Lockdown System</span>
+                    <span class="project-row__tags">C# .NET · KIOSK · WATCHDOG</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <a class="project-card" href="#" data-category="web">
-                    <div class="project-card__top">
-                        <span class="project-card__status">LIVE</span>
-                        <span class="project-card__arrow">↗</span>
-                    </div>
-                    <div class="project-card__bottom">
-                        <h3 class="project-card__title">Session Dashboard</h3>
-                        <div class="project-card__tags"><span>JAVASCRIPT</span><span>REST API</span></div>
-                    </div>
+                <a class="project-row" href="#" data-tags="JAVASCRIPT · REST API · UI" data-hue="260">
+                    <span class="project-row__index">03</span>
+                    <span class="project-row__title">Realtime Session Dashboard</span>
+                    <span class="project-row__tags">JAVASCRIPT · REST API · UI</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <a class="project-card" href="#" data-category="backend">
-                    <div class="project-card__top">
-                        <span class="project-card__status">LIVE</span>
-                        <span class="project-card__arrow">↗</span>
-                    </div>
-                    <div class="project-card__bottom">
-                        <h3 class="project-card__title">Booking Platform</h3>
-                        <div class="project-card__tags"><span>PHP</span><span>LARAVEL</span><span>AUTH</span></div>
-                    </div>
+                <a class="project-row" href="#" data-tags="PHP · LARAVEL · AUTH" data-hue="10">
+                    <span class="project-row__index">04</span>
+                    <span class="project-row__title">Multi-Role Booking Platform</span>
+                    <span class="project-row__tags">PHP · LARAVEL · AUTH</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
-                <a class="project-card" href="#" data-category="web">
-                    <div class="project-card__top">
-                        <span class="project-card__status">TEMPLATE</span>
-                        <span class="project-card__arrow">↗</span>
-                    </div>
-                    <div class="project-card__bottom">
-                        <h3 class="project-card__title">Portfolio System</h3>
-                        <div class="project-card__tags"><span>BOOTSTRAP</span><span>CSS</span></div>
-                    </div>
+                <a class="project-row" href="#" data-tags="BOOTSTRAP · HTML · CSS" data-hue="140">
+                    <span class="project-row__index">05</span>
+                    <span class="project-row__title">Portfolio Interface System</span>
+                    <span class="project-row__tags">BOOTSTRAP · HTML · CSS</span>
+                    <span class="project-row__arrow">↗</span>
                 </a>
-
             </div>
 
+        </div>
+
+        <div class="project-preview" id="projectPreview">
+            <div class="project-preview__inner" id="projectPreviewInner">
+                <span class="project-preview__label" id="projectPreviewLabel"></span>
+            </div>
         </div>
     </section>
 

@@ -2257,24 +2257,46 @@
 
 
 (function () {
-    const cards = document.querySelectorAll('.project-card');
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const coarse = window.matchMedia('(hover: none)').matches;
-    if (reduce || coarse) return;
+    const list = document.getElementById('projectList');
+    const preview = document.getElementById('projectPreview');
+    const inner = document.getElementById('projectPreviewInner');
+    const label = document.getElementById('projectPreviewLabel');
+    if (!list || !preview) return;
 
-    cards.forEach((card) => {
-        card.addEventListener('mousemove', (e) => {
-            const r = card.getBoundingClientRect();
-            const px = (e.clientX - r.left) / r.width;
-            const py = (e.clientY - r.top) / r.height;
-            card.style.setProperty('--mx', (px * 100) + '%');
-            card.style.setProperty('--my', (py * 100) + '%');
-            const rx = (py - 0.5) * -8;
-            const ry = (px - 0.5) * 8;
-            card.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-2px)`;
+    const isCoarse = window.matchMedia('(hover: none)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isCoarse || reduce) return; // skip cursor-follow on touch / reduced motion
+
+    let raf = null;
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+    function loop() {
+        curX += (targetX - curX) * 0.22;
+        curY += (targetY - curY) * 0.22;
+        preview.style.left = curX + 'px';
+        preview.style.top = curY + 'px';
+        raf = requestAnimationFrame(loop);
+    }
+
+    list.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!raf) loop();
+    });
+
+    list.querySelectorAll('.project-row').forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+            const hue = row.dataset.hue || '32';
+            inner.style.background = `linear-gradient(135deg, hsla(${hue}, 70%, 45%, 0.55), rgba(10,11,13,0.9))`;
+            label.textContent = row.dataset.tags || '';
+            preview.classList.add('is-visible');
         });
-        card.addEventListener('mouseleave', () => {
-            card.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateY(0)';
+        row.addEventListener('mouseleave', () => {
+            preview.classList.remove('is-visible');
         });
+    });
+
+    list.addEventListener('mouseleave', () => {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
     });
 })();
