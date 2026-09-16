@@ -848,7 +848,7 @@ body {
 .tier-num {
   font-family: var(--mono);
   font-size: 0.78rem;
-  color: var(--muted-2);
+  color: var(--accent);
 }
 
 .pricing-card h3 {
