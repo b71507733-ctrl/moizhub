@@ -2124,3 +2124,133 @@
     window.addEventListener('load', layout);
     layout();
 })();
+
+
+(function () {
+    const target = document.getElementById('typeTarget');
+    const fullText = "Who's behind the build.";
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (reduce || !target) {
+        if (target) target.textContent = fullText;
+    } else {
+        let i = 0;
+        function type() {
+            if (i <= fullText.length) {
+                target.textContent = fullText.slice(0, i);
+                i++;
+                setTimeout(type, 38);
+            }
+        }
+        setTimeout(type, 300);
+    }
+
+    // Border-trace: size the SVG rect to match the panel, dash length short
+    // so it reads as a single point of light traveling the perimeter.
+    const panel = document.querySelector('.id-panel');
+    const trace = document.getElementById('idTrace');
+    const rect = document.getElementById('idTraceRect');
+
+    function sizeTrace() {
+        if (!panel || !trace || !rect) return;
+        const w = panel.offsetWidth;
+        const h = panel.offsetHeight;
+        trace.setAttribute('width', w);
+        trace.setAttribute('height', h);
+        rect.setAttribute('x', 1);
+        rect.setAttribute('y', 1);
+        rect.setAttribute('width', Math.max(w - 2, 0));
+        rect.setAttribute('height', Math.max(h - 2, 0));
+        const perimeter = 2 * ((w - 2) + (h - 2));
+        rect.style.strokeDasharray = '36 ' + Math.max(perimeter - 36, 0);
+    }
+    window.addEventListener('resize', sizeTrace);
+    window.addEventListener('load', sizeTrace);
+    sizeTrace();
+
+    // Avatar 3D tilt, following the pointer within a small radius.
+    if (!reduce) {
+        const avatar = document.querySelector('.id-avatar');
+        const mono = document.querySelector('.id-avatar__mono');
+        if (avatar && mono) {
+            avatar.addEventListener('mousemove', (e) => {
+                const r = avatar.getBoundingClientRect();
+                const px = (e.clientX - r.left) / r.width - 0.5;
+                const py = (e.clientY - r.top) / r.height - 0.5;
+                mono.style.transform = `rotateY(${px * 24}deg) rotateX(${-py * 24}deg)`;
+            });
+            avatar.addEventListener('mouseleave', () => {
+                mono.style.transform = 'rotateY(0deg) rotateX(0deg)';
+            });
+        }
+    }
+
+    // Ambient background particle field: slow-drifting nodes that connect
+    // with a thin line when close enough, like a live telemetry backdrop.
+    const canvas = document.getElementById('identityField');
+    const section = document.querySelector('.section.identity');
+    if (canvas && section) {
+        const ctx = canvas.getContext('2d');
+        let w, h, particles;
+        const COUNT = 46;
+        const LINK_DIST = 130;
+
+        function resize() {
+            w = canvas.width = section.offsetWidth;
+            h = canvas.height = section.offsetHeight;
+        }
+
+        function makeParticles() {
+            particles = Array.from({ length: COUNT }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                vx: (Math.random() - 0.5) * 0.18,
+                vy: (Math.random() - 0.5) * 0.18,
+            }));
+        }
+
+        function step() {
+            ctx.clearRect(0, 0, w, h);
+
+            particles.forEach((p) => {
+                p.x += p.vx; p.y += p.vy;
+                if (p.x < 0 || p.x > w) p.vx *= -1;
+                if (p.y < 0 || p.y > h) p.vy *= -1;
+            });
+
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const a = particles[i], b = particles[j];
+                    const dx = a.x - b.x, dy = a.y - b.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < LINK_DIST) {
+                        ctx.strokeStyle = `rgba(255, 176, 32, ${0.14 * (1 - dist / LINK_DIST)})`;
+                        ctx.lineWidth = 1;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            particles.forEach((p) => {
+                ctx.fillStyle = 'rgba(134, 140, 151, 0.55)';
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 1.4, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            if (!reduce) requestAnimationFrame(step);
+        }
+
+        resize();
+        makeParticles();
+        if (reduce) {
+            step(); // draw one static frame only
+        } else {
+            step();
+        }
+        window.addEventListener('resize', () => { resize(); makeParticles(); });
+    }
+})();
