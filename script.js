@@ -2300,3 +2300,56 @@
         if (raf) { cancelAnimationFrame(raf); raf = null; }
     });
 })();
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Copy Functionality
+    const copyButtons = document.querySelectorAll('.contact-quick__row');
+    const copyNote = document.getElementById('copyNote');
+
+    copyButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const textToCopy = btn.getAttribute('data-copy');
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const actionSpan = btn.querySelector('.contact-quick__action');
+                const originalText = actionSpan.textContent;
+
+                actionSpan.textContent = 'COPIED!';
+                copyNote.textContent = `${btn.querySelector('.contact-quick__key').textContent} copied to clipboard!`;
+
+                setTimeout(() => {
+                    actionSpan.textContent = originalText;
+                    copyNote.innerHTML = '&nbsp;';
+                }, 2500);
+            });
+        });
+    });
+
+    // Form Submit -> Direct WhatsApp Redirect
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('cfName').value.trim();
+        const email = document.getElementById('cfEmail').value.trim();
+        const message = document.getElementById('cfMessage').value.trim();
+        const status = document.getElementById('contactStatus');
+
+        if (!name || !email || !message) {
+            status.textContent = 'Please fill out all required fields.';
+            status.style.color = '#ff4d4d';
+            return;
+        }
+
+        const whatsappNumber = '923301250824';
+        const formattedText = `Hi, I am *${name}* (${email}).%0A%0A*Message:* %0A${encodeURIComponent(message)}`;
+
+        status.textContent = 'Redirecting to WhatsApp...';
+        status.style.color = '#4cd964';
+
+        setTimeout(() => {
+            window.open(`https://wa.me/${whatsappNumber}?text=${formattedText}`, '_blank');
+            contactForm.reset();
+            status.textContent = '';
+        }, 1000);
+    });
+});
