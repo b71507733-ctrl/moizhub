@@ -2254,3 +2254,49 @@
         window.addEventListener('resize', () => { resize(); makeParticles(); });
     }
 })();
+
+
+(function () {
+    const list = document.getElementById('projectList');
+    const preview = document.getElementById('projectPreview');
+    const inner = document.getElementById('projectPreviewInner');
+    const label = document.getElementById('projectPreviewLabel');
+    if (!list || !preview) return;
+
+    const isCoarse = window.matchMedia('(hover: none)').matches;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isCoarse || reduce) return; // skip cursor-follow on touch / reduced motion
+
+    let raf = null;
+    let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+    function loop() {
+        curX += (targetX - curX) * 0.22;
+        curY += (targetY - curY) * 0.22;
+        preview.style.left = curX + 'px';
+        preview.style.top = curY + 'px';
+        raf = requestAnimationFrame(loop);
+    }
+
+    list.addEventListener('mousemove', (e) => {
+        targetX = e.clientX;
+        targetY = e.clientY;
+        if (!raf) loop();
+    });
+
+    list.querySelectorAll('.project-row').forEach((row) => {
+        row.addEventListener('mouseenter', () => {
+            const hue = row.dataset.hue || '32';
+            inner.style.background = `linear-gradient(135deg, hsla(${hue}, 70%, 45%, 0.55), rgba(10,11,13,0.9))`;
+            label.textContent = row.dataset.tags || '';
+            preview.classList.add('is-visible');
+        });
+        row.addEventListener('mouseleave', () => {
+            preview.classList.remove('is-visible');
+        });
+    });
+
+    list.addEventListener('mouseleave', () => {
+        if (raf) { cancelAnimationFrame(raf); raf = null; }
+    });
+})();
