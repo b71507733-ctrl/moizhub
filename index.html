@@ -306,148 +306,80 @@
     </section>
 
     <!-- ===================== SKILLS ===================== -->
+
     <section id="skills" class="section skills" data-label="02 / SKILLS">
         <div class="container-fluid">
 
             <p class="eyebrow" data-reveal>CAPABILITY MAP</p>
 
             <h2 class="section-title" data-reveal>
-                What powers<br>the build.
+                What powers the build.
             </h2>
 
             <p class="lede" data-reveal>
                 Explore the architecture behind MoizHub. Each node represents a core capability used to build scalable backends, interactive user interfaces, and desktop system utilities.
             </p>
 
-
             <div class="skill-map" id="skillMap">
 
-                <svg class="skill-map__lines"
-                     id="skillLines"
-                     aria-hidden="true"></svg>
+                <div class="skill-map__rotor" id="skillRotor">
 
-                <div class="skill-map__node skill-map__node--core"
-                     id="skillCore"
-                     style="--x:50%;--y:50%;">
+                    <svg class="skill-map__lines" id="skillLines" aria-hidden="true"></svg>
 
-                    <span>MOIZHUB</span>
+                    <button class="skill-map__node" data-skill="Laravel"
+                            data-desc="Backend Architecture — Eloquent ORM, authentication systems, custom middleware, REST APIs, and multi-role administrative dashboards."
+                            type="button"><span class="skill-map__node-label">Laravel</span></button>
+
+                    <button class="skill-map__node" data-skill="PHP"
+                            data-desc="Server Logic — Object-oriented PHP development, Composer workflows, file handling, and secure database interactions."
+                            type="button"><span class="skill-map__node-label">PHP</span></button>
+
+                    <button class="skill-map__node" data-skill="JavaScript"
+                            data-desc="Client-Side Interactivity — Vanilla JS, DOM manipulation, dynamic session timers, Fetch/AJAX requests, and responsive micro-interactions."
+                            type="button"><span class="skill-map__node-label">JavaScript</span></button>
+
+                    <button class="skill-map__node" data-skill="C# .NET"
+                            data-desc="Desktop Software — Windows client applications, system kiosk lockdown utilities, background watchdog processes, and local API integration."
+                            type="button"><span class="skill-map__node-label">C# .NET</span></button>
+
+                    <button class="skill-map__node" data-skill="MySQL"
+                            data-desc="Relational Databases — Schema design, relational data structures, foreign keys, migrations, and optimized queries."
+                            type="button"><span class="skill-map__node-label">MySQL</span></button>
+
+                    <button class="skill-map__node" data-skill="Bootstrap"
+                            data-desc="UI Framework — Customized Bootstrap 5 grid systems, responsive navigation components, and utility-first layout structures."
+                            type="button"><span class="skill-map__node-label">Bootstrap</span></button>
+
+                    <button class="skill-map__node" data-skill="HTML & CSS"
+                            data-desc="Semantic Design — Accessible markup, custom CSS variables, responsive layouts, clean typography, and smooth transitions."
+                            type="button"><span class="skill-map__node-label">HTML &amp; CSS</span></button>
+
+                    <button class="skill-map__node" data-skill="Git"
+                            data-desc="Version Control — Branch workflows, pull requests, merge conflict resolution, and clean commit history across solo and team projects."
+                            type="button"><span class="skill-map__node-label">Git</span></button>
 
                 </div>
 
-
-                <!-- Satellite Nodes -->
-
-                <button
-                        class="skill-map__node"
-                        data-skill="Laravel"
-                        data-desc="Backend Architecture — Eloquent ORM, authentication systems, custom middleware, REST APIs, and multi-role administrative dashboards."
-                        type="button">
-                    Laravel
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="PHP"
-                        data-desc="Server Logic — Object-oriented PHP development, Composer workflows, file handling, and secure database interactions."
-                        type="button">
-                    PHP
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="JavaScript"
-                        data-desc="Client-Side Interactivity — Vanilla JS, DOM manipulation, dynamic session timers, Fetch/AJAX requests, and responsive micro-interactions."
-                        type="button">
-                    JavaScript
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="C# .NET"
-                        data-desc="Desktop Software — Windows client applications, system kiosk lockdown utilities, background watchdog processes, and local API integration."
-                        type="button">
-                    C# .NET
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="MySQL"
-                        data-desc="Relational Databases — Schema design, relational data structures, foreign keys, migrations, and optimized queries."
-                        type="button">
-                    MySQL
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="Bootstrap"
-                        data-desc="UI Framework — Customized Bootstrap 5 grid systems, responsive navigation components, and utility-first layout structures."
-                        type="button">
-                    Bootstrap
-                </button>
-
-
-                <button
-                        class="skill-map__node"
-                        data-skill="HTML & CSS"
-                        data-desc="Semantic Design — Accessible markup, custom CSS variables, responsive layouts, clean typography, and smooth transitions."
-                        type="button">
-                    HTML & CSS
-                </button>
+                <div class="skill-map__node skill-map__node--core" id="skillCore" style="--x:50%;--y:50%;">
+                    <span>MOIZHUB</span>
+                </div>
 
             </div>
 
-
-            <p class="skill-map__desc"
-               id="skillDesc"
-               aria-live="polite">
+            <p class="skill-map__desc" id="skillDesc" aria-live="polite">
                 Select a capability to explore how it contributes to the build.
             </p>
 
-
             <!-- Mobile fallback list -->
-
-            <ul class="skill-list-mobile" aria-hidden="true">
-
-                <li>
-                    <strong>Laravel</strong>
-                    — Backend architecture, Eloquent ORM, authentication, and admin dashboards.
-                </li>
-
-                <li>
-                    <strong>PHP</strong>
-                    — Object-oriented server-side scripts and secure database handling.
-                </li>
-
-                <li>
-                    <strong>JavaScript</strong>
-                    — Dynamic UI, real-time timers, AJAX workflows, and DOM interactions.
-                </li>
-
-                <li>
-                    <strong>C# .NET</strong>
-                    — Desktop client applications, kiosk lockdown utilities, and watchdog processes.
-                </li>
-
-                <li>
-                    <strong>MySQL</strong>
-                    — Database schema design, relational data, and optimized queries.
-                </li>
-
-                <li>
-                    <strong>Bootstrap</strong>
-                    — Customized Bootstrap 5 responsive grid layouts and components.
-                </li>
-
-                <li>
-                    <strong>HTML & CSS</strong>
-                    — Semantic accessibility, custom visual styling, and responsive design.
-                </li>
-
+            <ul class="skill-list-mobile">
+                <li><strong>Laravel</strong> — Backend architecture, Eloquent ORM, authentication, and admin dashboards.</li>
+                <li><strong>PHP</strong> — Object-oriented server-side scripts and secure database handling.</li>
+                <li><strong>JavaScript</strong> — Dynamic UI, real-time timers, AJAX workflows, and DOM interactions.</li>
+                <li><strong>C# .NET</strong> — Desktop client applications, kiosk lockdown utilities, and watchdog processes.</li>
+                <li><strong>MySQL</strong> — Database schema design, relational data, and optimized queries.</li>
+                <li><strong>Bootstrap</strong> — Customized Bootstrap 5 responsive grid layouts and components.</li>
+                <li><strong>HTML &amp; CSS</strong> — Semantic accessibility, custom visual styling, and responsive design.</li>
+                <li><strong>Git</strong> — Branch workflows, pull requests, and clean commit history.</li>
             </ul>
 
         </div>

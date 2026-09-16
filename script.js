@@ -2063,3 +2063,64 @@
     }
 
 })();
+
+
+(function () {
+    const map = document.getElementById('skillMap');
+    const rotor = document.getElementById('skillRotor');
+    const svg = document.getElementById('skillLines');
+    const desc = document.getElementById('skillDesc');
+    const nodes = Array.from(rotor.querySelectorAll('.skill-map__node'));
+
+    // Arrange satellite nodes evenly around the core in a circle, and draw
+    // connector lines using the same math (not getBoundingClientRect), so
+    // everything stays correctly aligned while the rotor is spinning.
+    function layout() {
+        const w = map.offsetWidth;
+        const h = map.offsetHeight;
+        const cx = w / 2;
+        const cy = h / 2;
+        const radiusPct = 38;
+        const radiusPx = (radiusPct / 100) * Math.min(w, h);
+        const start = -90; // start at top
+
+        svg.setAttribute('width', w);
+        svg.setAttribute('height', h);
+        svg.innerHTML = '';
+
+        nodes.forEach((node, i) => {
+            const angle = (start + (360 / nodes.length) * i) * (Math.PI / 180);
+            const xPct = 50 + radiusPct * Math.cos(angle);
+            const yPct = 50 + radiusPct * Math.sin(angle);
+            node.style.setProperty('--x', xPct + '%');
+            node.style.setProperty('--y', yPct + '%');
+
+            const nx = cx + radiusPx * Math.cos(angle);
+            const ny = cy + radiusPx * Math.sin(angle);
+            const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', cx);
+            line.setAttribute('y1', cy);
+            line.setAttribute('x2', nx);
+            line.setAttribute('y2', ny);
+            line.dataset.skill = node.dataset.skill;
+            svg.appendChild(line);
+        });
+    }
+
+    nodes.forEach((node) => {
+        node.addEventListener('click', () => {
+            nodes.forEach((n) => n.classList.remove('is-active'));
+            node.classList.add('is-active');
+            desc.textContent = node.dataset.desc;
+            desc.classList.add('is-active');
+
+            svg.querySelectorAll('line').forEach((line) => {
+                line.classList.toggle('is-active', line.dataset.skill === node.dataset.skill);
+            });
+        });
+    });
+
+    window.addEventListener('resize', layout);
+    window.addEventListener('load', layout);
+    layout();
+})();
