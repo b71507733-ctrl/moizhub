@@ -687,184 +687,318 @@
 
     </section>
 
-    <!-- ===================== CONNECT (social + contact) ===================== -->
+    ```html
+    <!-- ===================== CONNECT ===================== -->
     <section id="connect" class="section connect" data-label="06 / CONNECT">
 
         <div class="container-fluid">
 
-            <p class="eyebrow" data-reveal>
-                OPEN A CONNECTION
-            </p>
+            <!-- SECTION INTRO -->
+            <div class="connect__intro">
 
-            <h2 class="section-title" data-reveal>
-                Let's build<br>
-                something worth shipping.
-            </h2>
+                <div>
+                    <p class="eyebrow" data-reveal>
+                        06 / OPEN A CONNECTION
+                    </p>
 
-            <p class="lede lede--muted" data-reveal>
-                Have an idea, a project, or something that needs to be built properly?
-                Reach out through any of the channels below and let's turn the idea
-                into something real.
-            </p>
-
-
-            <div class="row gy-5">
-
-                <!-- SOCIAL LINKS -->
-                <div class="col-lg-6">
-
-                    <ul class="social-panel" id="socialPanel">
-                        <!-- injected by JS from socialLinks -->
-                    </ul>
-
+                    <h2 class="section-title" data-reveal>
+                        Let's build<br>
+                        something worth shipping.
+                    </h2>
                 </div>
 
+                <p class="lede lede--muted connect__lede" data-reveal>
+                    Have an idea, a website, an application, or a project that
+                    needs to be built properly? Tell me what you're working on
+                    and let's turn the idea into something real.
+                </p>
 
-                <!-- CONTACT -->
-                <div class="col-lg-6">
-
-                    <div class="contact-quick">
-
-                        <!-- EMAIL -->
-                        <button
-                                class="contact-quick__row"
-                                id="copyEmailBtn"
-                                type="button"
-                                data-copy-target="email">
-
-            <span class="contact-quick__key">
-              EMAIL
-            </span>
-
-                            <span
-                                    class="contact-quick__val"
-                                    id="emailDisplay">
-           abdulmoizmeer2@gmail.com
-            </span>
-
-                            <span class="contact-quick__action">
-              COPY
-            </span>
-
-                        </button>
+            </div>
 
 
-                        <!-- WHATSAPP -->
-                        <button
-                                class="contact-quick__row"
-                                id="copyWhatsappBtn"
-                                type="button"
-                                data-copy-target="whatsapp">
+            <div class="connect-grid">
 
-            <span class="contact-quick__key">
-              WHATSAPP
-            </span>
+                <!-- ================================================= -->
+                <!-- LEFT : SOCIAL / DIRECT CONTACT -->
+                <!-- ================================================= -->
+                <div class="connect__left" data-reveal>
 
-                            <span
-                                    class="contact-quick__val"
-                                    id="whatsappDisplay">
-              03301250824
-            </span>
+                    <div class="connect-block">
 
-                            <span class="contact-quick__action">
-              COPY
-            </span>
+                        <div class="connect-block__top">
+                            <span class="connect-block__index">01</span>
 
-                        </button>
+                            <div>
+                            <span class="connect-block__label">
+                                FIND ME ONLINE
+                            </span>
+
+                                <p>
+                                    Connect through any of these platforms.
+                                </p>
+                            </div>
+                        </div>
 
 
-                        <p
-                                class="contact-quick__note"
-                                id="copyNote"
-                                aria-live="polite">
-                            &nbsp;
-                        </p>
+                        <!-- SOCIAL LINKS -->
+                        <ul class="social-panel" id="socialPanel">
+                            <!-- injected by JS from socialLinks -->
+                        </ul>
 
                     </div>
 
 
-                    <!-- CONTACT FORM -->
-                    <form
-                            class="contact-form"
-                            id="contactForm"
-                            novalidate>
+                    <!-- DIRECT CONTACT -->
+                    <div class="connect-block connect-block--direct">
 
-                        <p class="contact-form__hint">
-                            No account, no complicated process — send a message and it
-                            opens directly in WhatsApp, ready to go.
-                        </p>
+                        <div class="connect-block__top">
 
+                            <span class="connect-block__index">02</span>
 
-                        <label class="contact-form__field">
+                            <div>
+                            <span class="connect-block__label">
+                                DIRECT CONTACT
+                            </span>
 
-                            <span>Name</span>
+                                <p>
+                                    Prefer a direct conversation?
+                                </p>
+                            </div>
 
-                            <input
-                                    type="text"
-                                    name="name"
-                                    id="cfName"
-                                    required
-                                    autocomplete="name">
-
-                        </label>
+                        </div>
 
 
-                        <label class="contact-form__field">
-
-                            <span>Email</span>
-
-                            <input
-                                    type="email"
-                                    name="email"
-                                    id="cfEmail"
-                                    required
-                                    autocomplete="email">
-
-                        </label>
+                        <div class="contact-quick">
 
 
-                        <label class="contact-form__field">
+                            <!-- EMAIL -->
+                            <button
+                                    class="contact-quick__row"
+                                    id="copyEmailBtn"
+                                    type="button"
+                                    data-copy-target="email"
+                                    aria-label="Copy email address">
 
-                            <span>Message</span>
+                            <span class="contact-quick__icon">
+                                @
+                            </span>
 
-                            <textarea
-                                    name="message"
-                                    id="cfMessage"
-                                    rows="4"
-                                    required></textarea>
+                                <span class="contact-quick__content">
 
-                        </label>
+                                <span class="contact-quick__key">
+                                    EMAIL
+                                </span>
+
+                                <span
+                                        class="contact-quick__val"
+                                        id="emailDisplay">
+                                    abdulmoizmeer2@gmail.com
+                                </span>
+
+                            </span>
+
+                                <span class="contact-quick__action">
+                                COPY
+                            </span>
+
+                            </button>
 
 
-                        <button
-                                type="submit"
-                                class="btn-signal btn-signal--block">
+                            <!-- WHATSAPP -->
+                            <button
+                                    class="contact-quick__row"
+                                    id="copyWhatsappBtn"
+                                    type="button"
+                                    data-copy-target="whatsapp"
+                                    aria-label="Copy WhatsApp number">
 
-                            SEND MESSAGE
+                            <span class="contact-quick__icon">
+                                ↗
+                            </span>
 
-                            <span aria-hidden="true">
-              →
-            </span>
+                                <span class="contact-quick__content">
 
-                        </button>
+                                <span class="contact-quick__key">
+                                    WHATSAPP
+                                </span>
+
+                                <span
+                                        class="contact-quick__val"
+                                        id="whatsappDisplay">
+                                    03301250824
+                                </span>
+
+                            </span>
+
+                                <span class="contact-quick__action">
+                                COPY
+                            </span>
+
+                            </button>
 
 
-                        <p
-                                class="contact-form__status"
-                                id="contactStatus"
-                                role="status"
-                                aria-live="polite">
-                        </p>
+                            <p
+                                    class="contact-quick__note"
+                                    id="copyNote"
+                                    aria-live="polite">
+                                &nbsp;
+                            </p>
 
-                    </form>
+                        </div>
+
+                    </div>
 
                 </div>
+
+
+
+                <!-- ================================================= -->
+                <!-- RIGHT : CONTACT FORM -->
+                <!-- ================================================= -->
+                <div class="connect__right" data-reveal>
+
+                    <div class="contact-form-card">
+
+                        <div class="contact-form-card__header">
+
+                            <div>
+                            <span class="connect-block__label">
+                                START A PROJECT
+                            </span>
+
+                                <h3>
+                                    Tell me what you're building.
+                                </h3>
+                            </div>
+
+                            <span class="contact-form-card__number">
+                            03
+                        </span>
+
+                        </div>
+
+
+                        <p class="contact-form__hint">
+                            No account. No complicated process.
+                            Send the details and I'll get back to you.
+                        </p>
+
+
+                        <!-- CONTACT FORM -->
+                        <form
+                                class="contact-form"
+                                id="contactForm"
+                                novalidate>
+
+
+                            <!-- NAME -->
+                            <label class="contact-form__field">
+
+                            <span class="contact-form__label">
+                                YOUR NAME
+                            </span>
+
+                                <input
+                                        type="text"
+                                        name="name"
+                                        id="cfName"
+                                        placeholder="John Doe"
+                                        required
+                                        autocomplete="name">
+
+                            </label>
+
+
+                            <!-- EMAIL -->
+                            <label class="contact-form__field">
+
+                            <span class="contact-form__label">
+                                EMAIL ADDRESS
+                            </span>
+
+                                <input
+                                        type="email"
+                                        name="email"
+                                        id="cfEmail"
+                                        placeholder="you@example.com"
+                                        required
+                                        autocomplete="email">
+
+                            </label>
+
+
+                            <!-- MESSAGE -->
+                            <label class="contact-form__field">
+
+                            <span class="contact-form__label">
+                                PROJECT / MESSAGE
+                            </span>
+
+                                <textarea
+                                        name="message"
+                                        id="cfMessage"
+                                        rows="5"
+                                        placeholder="Tell me a little about your project..."
+                                        required></textarea>
+
+                            </label>
+
+
+                            <!-- SUBMIT -->
+                            <button
+                                    type="submit"
+                                    class="btn-signal btn-signal--block contact-submit">
+
+                            <span>
+                                SEND MESSAGE
+                            </span>
+
+                                <span
+                                        class="contact-submit__arrow"
+                                        aria-hidden="true">
+                                →
+                            </span>
+
+                            </button>
+
+
+                            <!-- STATUS -->
+                            <p
+                                    class="contact-form__status"
+                                    id="contactStatus"
+                                    role="status"
+                                    aria-live="polite">
+                            </p>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BOTTOM STATUS BAR -->
+            <div class="connect-footer" data-reveal>
+
+            <span>
+                AVAILABLE FOR SELECT PROJECTS
+            </span>
+
+                <span class="connect-footer__line"></span>
+
+                <span>
+                KARACHI / PAKISTAN
+            </span>
 
             </div>
 
         </div>
 
     </section>
+    ```
+
 
 
 </main>
