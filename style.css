@@ -1676,3 +1676,6 @@ body {
 
 [data-bs-toggle="collapse"] .bi { transition: transform .3s; }
 [data-bs-toggle="collapse"][aria-expanded="true"] .bi { transform: rotate(90deg); }
+
+[data-bs-toggle="collapse"] .bi { transition: transform .3s; }
+[data-bs-toggle="collapse"][aria-expanded="true"] .bi { transform: rotate(90deg); }
