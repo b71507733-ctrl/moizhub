@@ -1673,3 +1673,6 @@ body {
     grid-row: span 1;
   }
 }
+
+[data-bs-toggle="collapse"] .bi { transition: transform .3s; }
+[data-bs-toggle="collapse"][aria-expanded="true"] .bi { transform: rotate(90deg); }
