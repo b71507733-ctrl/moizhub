@@ -1092,7 +1092,7 @@
             github: {
                 name: "GitHub",
                 description: "Code, repositories and experiments",
-                icon: "bi-github"
+                icon: "fa-brands fa-github-alt"
             },
 
             linkedin: {
